@@ -23,7 +23,7 @@ public class AccountPageStellarBurgersTest {
     @BeforeEach
     public void setUp() {
 
-        driver = WebDriverFactory.getDriver("chrome");
+        driver = WebDriverFactory.getDriver("yandex");
 
         signInPage = new SignInPageStellarBurgers(driver);
         signUpPage = new SignUpPageStellarBurgers(driver);

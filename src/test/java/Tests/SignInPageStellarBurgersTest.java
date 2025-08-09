@@ -1,6 +1,7 @@
 package Tests;
 
 import TestDataGenerator.TestDataHelper;
+import WebDriverFactory.WebDriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,8 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import pageObjects.ForgotPasswordPageStellarBurgers;
 import pageObjects.MainPageStellarBurgers;
 import pageObjects.SignInPageStellarBurgers;
@@ -18,7 +17,7 @@ import pageObjects.SignUpPageStellarBurgers;
 
 import java.util.stream.Stream;
 
-public class SignInPageStellarBurgersChromeTest {
+public class SignInPageStellarBurgersTest {
     private WebDriver driver;
     private SignUpPageStellarBurgers signUpPage;
     private SignInPageStellarBurgers signInPage;
@@ -29,9 +28,8 @@ public class SignInPageStellarBurgersChromeTest {
     @BeforeEach
     public void setUp() {
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
+        driver = WebDriverFactory.getDriver("yandex");
+
         signInPage = new SignInPageStellarBurgers(driver);
         signUpPage = new SignUpPageStellarBurgers(driver);
         mainPage = new MainPageStellarBurgers(driver);
@@ -121,5 +119,4 @@ public class SignInPageStellarBurgersChromeTest {
         mainPage.waitForMainPageLoading();
         Assertions.assertTrue(signInPage.isCreateOrderButtonVisible(), "Авторизации не произошло");
     }
-
 }

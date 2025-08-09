@@ -1,21 +1,22 @@
 package Tests;
 
 import TestDataGenerator.TestDataHelper;
-import org.junit.jupiter.api.*;
+import WebDriverFactory.WebDriverFactory;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import pageObjects.SignInPageStellarBurgers;
 import pageObjects.SignUpPageStellarBurgers;
 
 import java.util.stream.Stream;
 
-public class SignUpPageStellarBurgersChromeTest {
-
+public class SignUpPageStellarBurgersTest {
     private WebDriver driver;
     private SignUpPageStellarBurgers signUpPage;
     private SignInPageStellarBurgers signInPage;
@@ -24,9 +25,8 @@ public class SignUpPageStellarBurgersChromeTest {
     @BeforeEach
     public void setUp() {
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
+        driver = WebDriverFactory.getDriver("yandex");
+
         signInPage = new SignInPageStellarBurgers(driver);
         signUpPage = new SignUpPageStellarBurgers(driver);
 
@@ -79,6 +79,5 @@ public class SignUpPageStellarBurgersChromeTest {
         signUpPage.signUp(TestDataHelper.generateRandomName(), TestDataHelper.generateRandomEmail(), password);
         Assertions.assertTrue(signUpPage.isPasswordErrorVisible(), "Сообщение об ошибке не появилось");
     }
-
-
 }
+

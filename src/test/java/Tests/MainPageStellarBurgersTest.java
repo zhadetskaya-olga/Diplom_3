@@ -1,15 +1,14 @@
 package Tests;
 
-
+import WebDriverFactory.WebDriverFactory;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import pageObjects.*;
+import pageObjects.AccountPageStellarBurgers;
+import pageObjects.MainPageStellarBurgers;
+import pageObjects.SignInPageStellarBurgers;
+import pageObjects.SignUpPageStellarBurgers;
 
-
-
-public class MainPageStellarBurgersChromeTest {
+public class MainPageStellarBurgersTest {
     private WebDriver driver;
     private SignUpPageStellarBurgers signUpPage;
     private SignInPageStellarBurgers signInPage;
@@ -23,9 +22,8 @@ public class MainPageStellarBurgersChromeTest {
     @BeforeEach
     public void setUp() {
 
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);
+        driver = WebDriverFactory.getDriver("yandex");
+
         signInPage = new SignInPageStellarBurgers(driver);
         signUpPage = new SignUpPageStellarBurgers(driver);
         mainPage = new MainPageStellarBurgers(driver);
@@ -85,3 +83,4 @@ public class MainPageStellarBurgersChromeTest {
     }
 
 }
+
