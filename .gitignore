@@ -1,7 +1,15 @@
-target/
+/.allure/
+/allure-results/*
+
+/target/*
+!/target/allure-report/
+/target/allure-report/*
+!/target/allure-report/index.html
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
