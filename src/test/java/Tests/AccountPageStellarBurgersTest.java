@@ -1,17 +1,15 @@
-package YandexBrowserTests;
+package Tests;
 
 import TestDataGenerator.TestDataHelper;
+import WebDriverFactory.WebDriverFactory;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import pageObjects.AccountPageStellarBurgers;
 import pageObjects.MainPageStellarBurgers;
 import pageObjects.SignInPageStellarBurgers;
 import pageObjects.SignUpPageStellarBurgers;
 
-public class AccountPageStellarBurgersYandexTest {
+public class AccountPageStellarBurgersTest {
     private WebDriver driver;
     private SignUpPageStellarBurgers signUpPage;
     private SignInPageStellarBurgers signInPage;
@@ -25,17 +23,8 @@ public class AccountPageStellarBurgersYandexTest {
     @BeforeEach
     public void setUp() {
 
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Olya\\Driver_for_test\\yandexdriver-25.6.0.2261-win64\\yandexdriver.exe");
+        driver = WebDriverFactory.getDriver("chrome");
 
-        ChromeOptions options = new ChromeOptions();
-        options.setBinary("C:\\Users\\Olya\\AppData\\Local\\Yandex\\YandexBrowser\\Application\\browser.exe");
-
-        options.addArguments("--remote-allow-origins=*"); // Критически важно!
-        options.addArguments("--start-maximized");
-        options.addArguments("--disable-blink-features=AutomationControlled");
-        options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
-
-        driver = new ChromeDriver(options);
         signInPage = new SignInPageStellarBurgers(driver);
         signUpPage = new SignUpPageStellarBurgers(driver);
         mainPage = new MainPageStellarBurgers(driver);
@@ -53,6 +42,7 @@ public class AccountPageStellarBurgersYandexTest {
         }
 
     }
+
     @Test
     @DisplayName("Переход из личного кабинета в конструктор по клику на кнопку Конструктор")
     public void shouldOpenConstructorPageAfterClickingOnConstructorLink() {

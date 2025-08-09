@@ -1,10 +1,7 @@
-package YandexBrowserTests;
+package Tests;
 
 import TestDataGenerator.TestDataHelper;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -17,7 +14,8 @@ import pageObjects.SignUpPageStellarBurgers;
 
 import java.util.stream.Stream;
 
-public class SignUpPageStellarBurgersYandexTest {
+public class SignUpPageStellarBurgersChromeTest {
+
     private WebDriver driver;
     private SignUpPageStellarBurgers signUpPage;
     private SignInPageStellarBurgers signInPage;
@@ -26,16 +24,8 @@ public class SignUpPageStellarBurgersYandexTest {
     @BeforeEach
     public void setUp() {
 
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Olya\\Driver_for_test\\yandexdriver-25.6.0.2261-win64\\yandexdriver.exe");
-
         ChromeOptions options = new ChromeOptions();
-        options.setBinary("C:\\Users\\Olya\\AppData\\Local\\Yandex\\YandexBrowser\\Application\\browser.exe");
-
-        options.addArguments("--remote-allow-origins=*"); // Критически важно!
-        options.addArguments("--start-maximized");
-        options.addArguments("--disable-blink-features=AutomationControlled");
         options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
-
         driver = new ChromeDriver(options);
         signInPage = new SignInPageStellarBurgers(driver);
         signUpPage = new SignUpPageStellarBurgers(driver);
@@ -89,4 +79,6 @@ public class SignUpPageStellarBurgersYandexTest {
         signUpPage.signUp(TestDataHelper.generateRandomName(), TestDataHelper.generateRandomEmail(), password);
         Assertions.assertTrue(signUpPage.isPasswordErrorVisible(), "Сообщение об ошибке не появилось");
     }
+
+
 }

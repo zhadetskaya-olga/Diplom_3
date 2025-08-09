@@ -1,4 +1,4 @@
-package ChromeTests;
+package Tests;
 
 import TestDataGenerator.TestDataHelper;
 import org.junit.jupiter.api.AfterEach;

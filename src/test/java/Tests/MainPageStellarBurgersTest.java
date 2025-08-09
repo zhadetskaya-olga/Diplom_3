@@ -1,4 +1,4 @@
-package ChromeTests;
+package Tests;
 
 
 import org.junit.jupiter.api.*;
